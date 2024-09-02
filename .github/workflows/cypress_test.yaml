@@ -1,0 +1,31 @@
+name: Cypress Test
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build Next.js app
+        run: yarn build
+
+      - name: Wait for the application to be ready
+        run: sleep 10
+
+      - name: Run Cypress tests
+        run: yarn run cypress run
+        env:
+          CYPRESS_CACHE_FOLDER: ~/.cache/Cypress
