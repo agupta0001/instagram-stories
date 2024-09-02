@@ -23,7 +23,7 @@ jobs:
         run: yarn build
 
       - name: Run Next.js app
-        run: yarn start
+        run: yarn start &
 
       - name: Wait for the application to be ready
         run: sleep 10
