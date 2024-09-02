@@ -30,6 +30,7 @@ const Header: FC<HeaderProps> = ({ avatar, name, closeStory }) => {
           height="24"
           className="text-white"
           onClick={() => closeStory()}
+          data-testid="close-story"
         />
       </button>
     </div>

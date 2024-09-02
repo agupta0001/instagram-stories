@@ -6,13 +6,7 @@ import { StoryActionType, storyReducer } from "@/reducers/story";
 import { getUserAndStories } from "@/services/users";
 import { useQuery } from "@tanstack/react-query";
 import { Inter } from "next/font/google";
-import {
-  ReactEventHandler,
-  useCallback,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { useCallback, useEffect, useReducer } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -56,15 +50,20 @@ export default function Home() {
     dispatch({ type: StoryActionType.OPEN_STORY, payload: userIndex });
   }, []);
 
-  if (usersAndStoriesQuery.isLoading) return "Loading...";
+  if (usersAndStoriesQuery.isLoading)
+    return (
+      <div className="size-full flex justify-center items-center">
+        Loading...
+      </div>
+    );
 
   if (usersAndStoriesQuery.isError) return "Something went wrong...";
 
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between ${inter.className} size-full`}
+      className={`flex min-h-screen flex-col items-center justify-between ${inter.className} size-full overflow-hidden`}
     >
-      <div className="max-w-2xl relative">
+      <div className="max-w-2xl w-full relative">
         <UserAvatars
           users={usersAndStoriesQuery.data || []}
           openStory={openStory}

@@ -13,6 +13,7 @@ export const UserAvatars: FC<UserAvatarsProps> = ({ users, openStory }) => {
     <div className="h-[88px] w-full flex overflow-x-auto px-4 py-3 gap-3">
       {users.map((user, idx) => (
         <Image
+          data-testid="user-story-avatar"
           key={user.avatar}
           src={user.avatar}
           width={64}

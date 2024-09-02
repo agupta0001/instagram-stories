@@ -6,27 +6,6 @@ import { UserWithStories } from "@/types/user";
 import Spinner from "./Spinner";
 import { StoryType } from "@/types/story";
 
-const tempData = {
-  id: "SDqolnwhpM6HsQhuD5eNr",
-  name: "Orlando Langworth",
-  username: "Lonzo.Nikolaus30",
-  avatar: "https://avatars.githubusercontent.com/u/90824885",
-  stories: [
-    {
-      id: "MZFgz1xL6w5p8IY5fb9fB",
-      url: "https://picsum.photos/seed/Qc9s9TVP0x/640/480",
-      created: "2024-08-29T01:12:32.399Z",
-      userId: "SDqolnwhpM6HsQhuD5eNr",
-    },
-    {
-      id: "lxKJpRNg5XGYMkRdPY3Zt",
-      url: "https://picsum.photos/seed/rzuY1PT/640/480",
-      created: "2024-08-29T01:25:29.241Z",
-      userId: "SDqolnwhpM6HsQhuD5eNr",
-    },
-  ],
-};
-
 type StoriesProps = {
   userStory?: UserWithStories;
   storyIndex: number;
@@ -105,16 +84,18 @@ const Stories: FC<StoriesProps> = ({
         {isLoading && <Spinner />}
         {(!story.type || story.type === StoryType.IMG) && (
           <Image
+            data-teststoryid={story.id}
             src={story.url}
             alt="story"
             width="480"
             height="640"
-            className={`w-full ${isLoading && "opacity-0"}`}
+            className={`w-full ${isLoading ? "opacity-0" : ""}`}
             onLoad={handleLoad}
           />
         )}
         {story.type === StoryType.VID && (
           <video
+            data-teststoryid={story.id}
             data-testid="video-story"
             src={story.url}
             ref={videoRef}

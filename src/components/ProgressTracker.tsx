@@ -39,6 +39,7 @@ const ProgressTracker: FC<ProgressTrackerProps> = ({
                 : "bg-opacity-35"
             }`}
             key={idx}
+            data-testid="story-progress"
           >
             {isStoryActive && (
               <div
