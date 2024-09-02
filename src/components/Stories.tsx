@@ -65,7 +65,6 @@ const Stories: FC<StoriesProps> = ({
 
   const handleVideoLoad = () => {
     if (!videoRef.current) return;
-    console.log("Video Loaded", videoRef.current.duration);
     setVideoDuration(videoRef.current.duration * 1000);
     setIsLoading(false);
   };
@@ -101,6 +100,7 @@ const Stories: FC<StoriesProps> = ({
       <div
         className="absolute top-0 left-0 w-full flex justify-center items-center h-dvh bg-black"
         onClick={handleNavigation}
+        data-testid="navigation-element"
       >
         {isLoading && <Spinner />}
         {(!story.type || story.type === StoryType.IMG) && (
@@ -115,6 +115,7 @@ const Stories: FC<StoriesProps> = ({
         )}
         {story.type === StoryType.VID && (
           <video
+            data-testid="video-story"
             src={story.url}
             ref={videoRef}
             onLoadedData={handleVideoLoad}

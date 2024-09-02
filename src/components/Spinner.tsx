@@ -3,6 +3,7 @@ import Image from "next/image";
 export default function Spinner() {
   return (
     <Image
+      data-testid="spinner"
       src="/spinner.svg"
       alt="Loading Spinner"
       width={40}
